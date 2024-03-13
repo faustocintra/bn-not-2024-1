@@ -1,2 +1,27 @@
-# bn-not-2024-1
-Repositório da disciplina Banco de Dados - Não Relacional, 3º semestre DSM Fatec Franca 2024/1
+# Criação do projeto back-end
+npx @aka-demy/create-express-app
+
+Respostas às perguntas:
+* Install package...? y
+* Give a name for the app: back-end
+* Choose a language: JavaScript
+* Choose a template engine: None
+* Choose a package manager: npm
+
+# Mudando a pasta do projeto
+cd back-end
+
+# Instalando o Prisma como dependência de desenvolvimento
+npm install prisma --save-dev
+* Instale também a extensão Prisma no VS Code
+
+# Inicializando o Prisma com conector para MongoDB
+npx prisma init --datasource-provider mongodb
+
+# Adicionando o Prisma Client ao projeto
+npm install @prisma/client
+
+# Gerando o cliente personalizado do Prisma para o projeto
+npx prisma generate
+* Este comando precisa ser executado sempre que houver alterações
+  no arquivo prisma/schema.prisma
