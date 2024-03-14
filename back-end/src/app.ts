@@ -1,9 +1,9 @@
-import express, { json, urlencoded } from "express";
-import cookieParser from "cookie-parser";
-import logger from "morgan";
+import cookieParser from "cookie-parser"
+import express, { json, urlencoded } from "express"
+import logger from "morgan"
 
-import indexRouter from "./routes/index.js";
-import usersRouter from "./routes/users.js";
+import indexRouter from "./routes"
+import usersRouter from "./routes/users"
 
 const app = express();
 
