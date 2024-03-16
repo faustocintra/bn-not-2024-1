@@ -4,9 +4,11 @@
  * Module dependencies.
  */
 
-import chalk from "chalk"
+// import chalk from "chalk"
 import { createServer } from "http"
 import app from "../app"
+import { cyan } from 'kleur'
+
 
 /**
  * Get port from environment and store in Express.
@@ -82,5 +84,5 @@ function onError(error: any) {
 function onListening() {
   let addr = server.address();
   let bind = typeof addr === "string" ? `pipe  ${addr}` : `port ${addr?.port}`;
-  console.log(chalk.cyan(`Listening on ${bind}.`));
+  console.log(cyan(`Listening on ${bind}.`));
 }
