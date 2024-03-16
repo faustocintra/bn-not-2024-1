@@ -4,6 +4,7 @@ import logger from "morgan"
 
 import indexRouter from "./routes"
 import usersRouter from "./routes/users"
+import clientRouter from "./routes/client"
 
 const app = express();
 
@@ -14,5 +15,6 @@ app.use(cookieParser());
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use('/clientes', clientRouter)
 
 export default app;
