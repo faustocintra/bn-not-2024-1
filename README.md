@@ -30,3 +30,19 @@ PRISMA/PRISMA.SCHEMA
 criar pasta e arquivo: src/database/client.js
 
 criar pasta e arquivo: src/controllers/client.js
+
+criar arquivo: src/routes/client.js
+
+thunder Client > new request > body
+{
+"nome": "Tertuliano Teles Taveira",
+"cpf": "123.456.789-01",
+"data_nascimento": "1975-05-29T00:00:00Z",
+"logradouro": "Rua do Sobe e Desce",
+"num_casa": "1366",
+"bairro": "Vila Vintém",
+"municipio":"Morro Alto de Cima",
+"uf":"MG",
+"telefone":"(36) 98765-4321",
+"email":"tertuliano@queijobao.com.br"
+}
