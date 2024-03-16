@@ -21,4 +21,4 @@ router.delete("/", function (req, res) {
   res.send("Deleted a user");
 });
 
-export default router;
+export default router

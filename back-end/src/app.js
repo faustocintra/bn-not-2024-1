@@ -15,4 +15,11 @@ app.use(cookieParser());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
-export default app;
+/******************************************************
+ * ROTAS
+ ******************************************************/
+
+import clienteRouter from './routes/cliente.js'
+app.use('/clientes', clienteRouter)
+
+export default app;
