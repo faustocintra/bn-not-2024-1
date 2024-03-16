@@ -1,4 +1,4 @@
-import prisma from '../database/client.js'
+import prisma from '../database/client'
 
 const controller = {}   // Objeto vazio
 
