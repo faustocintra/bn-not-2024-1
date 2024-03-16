@@ -4,10 +4,9 @@
  * Module dependencies.
  */
 
-// import chalk from "chalk"
 import { createServer } from "http"
-import app from "../app"
 import { cyan } from 'kleur'
+import app from "../app"
 
 
 /**
