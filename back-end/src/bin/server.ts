@@ -3,10 +3,11 @@
 /**
  * Module dependencies.
  */
-
+import dotenv from "dotenv"
 import { createServer } from "http"
 import { cyan } from 'kleur'
 import app from "../app"
+dotenv.config()
 
 
 /**
