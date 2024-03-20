@@ -28,10 +28,25 @@ ESTE COMANDO PRECISA SER EXECUTADO SEMPRE QUE HOUVER ALTERAÇÕES NO ARQUIVO:
 PRISMA/PRISMA.SCHEMA
 
 criar pasta e arquivo: src/database/client.js
-
 criar pasta e arquivo: src/controllers/client.js
-
 criar arquivo: src/routes/client.js
+
+DESINSTALAR PRISMA
+npm uninstall prisma --save-dev
+npm uninstall @prisma/client
+apagar pasta database e prisma
+
+INSTALAR O MONGOOSE
+npm install mongoose
+npm install dotenv
+
+no app.JS:
+import dotenv from 'dotenv'
+dotenv.config() 
+// Carrega as variaveis de arquivo .env
+// no objeto global process .env
+
+
 
 thunder Client > new request > body
 {
