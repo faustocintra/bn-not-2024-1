@@ -4,11 +4,11 @@ import logger from "morgan"
 
 import 'express-async-errors'
 import mongoose from "mongoose"
+import { ZodError } from "zod"
 import { env } from "./env"
 import indexRouter from "./routes"
 import clientRouter from "./routes/client"
 import usersRouter from "./routes/users"
-import { ZodError } from "zod"
 const app = express();
 
 mongoose.connect(env.DATABASE_URL).then(() => {
@@ -28,9 +28,15 @@ app.use("/users", usersRouter);
 app.use('/clientes', clientRouter)
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
+  if (error.name === 'MongoServerError') {
+    if (error.code === 11000) {
+      return res.status(400).json({ message: "Duplicated key", key: Object.keys(error.keyPattern)})
+    }
+  }
   if (error instanceof ZodError) {
     return res.status(400).json({ message: error.errors })
   }
+
   return res.status(500).json({ message: error.message })
 })
 

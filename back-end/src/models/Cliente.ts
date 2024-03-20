@@ -25,9 +25,9 @@ export const clientZodSchema = z.object({
   bairro: z.string(),
   complemento: z.string().optional(),
   municipio: z.string(),
-  uf: z.string(),
+  uf: z.string().length(2),
   telefone: z.string(),
-  email: z.string()
+  email: z.string().email()
 })
 
 export const ClienteModel = mongoose.model('Cliente', clienteSchema)
