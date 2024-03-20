@@ -1,5 +1,5 @@
-import prisma from '../database/client'
 
-const controller = {}   // Objeto vazio
+
+const controller = {}
 
 export default controller
