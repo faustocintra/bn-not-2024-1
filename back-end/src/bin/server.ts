@@ -3,13 +3,15 @@
 /**
  * Module dependencies.
  */
+
+
 import dotenv from "dotenv"
 import { createServer } from "http"
 import { cyan } from 'kleur'
-import app from "../app"
-import { env } from "../env"
 dotenv.config()
+import app from "../app"
 
+import { env } from "../env"
 
 /**
  * Get port from environment and store in Express.
