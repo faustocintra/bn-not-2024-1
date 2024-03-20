@@ -7,6 +7,7 @@ import dotenv from "dotenv"
 import { createServer } from "http"
 import { cyan } from 'kleur'
 import app from "../app"
+import { env } from "../env"
 dotenv.config()
 
 
@@ -14,7 +15,7 @@ dotenv.config()
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || "8080");
+const port = normalizePort(env.PORT);
 app.set("port", port);
 
 /**
