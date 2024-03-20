@@ -1,10 +1,10 @@
-import prisma from "../database/client.js";
+import Cliente from "../models/Cliente.js";
 
 const controller = {}  // Objeto vazio
 
 controller.create = async function(req, res) {
     try {
-        await prisma.cliente.create({ data: req.body })
+        await Cliente.create(req.body)
 
         // Envia uma resposta de sucesso ao front-end
         // HTTP 201: Created
