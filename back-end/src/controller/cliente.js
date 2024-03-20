@@ -1,10 +1,11 @@
-import prisma from "../database/client.js";
+import Cliente from "../models/Cliente.js";
+
 
 const controller = {}; // Objeto vazio
 
 controller.create = async function(req, res) { //Só pode usar awai em uma função async
     try {
-        await prisma.cliente.create({ data: req.body }) //await vai executar a linha de baixo quando obter uma resposta da entidade externa, nesse caso, nosso banco
+        await Cliente.create(req.body) //await vai executar a linha de baixo quando obter uma resposta da entidade externa, nesse caso, nosso banco
 
         // Envia uma resposta de sucesso ao front-end
         // HTTP 201: Created
