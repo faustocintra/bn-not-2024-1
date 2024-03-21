@@ -5,10 +5,8 @@
  */
 
 
-import dotenv from "dotenv"
 import { createServer } from "http"
 import { cyan } from 'kleur'
-dotenv.config()
 import app from "../app"
 
 import { env } from "../env"
