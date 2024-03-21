@@ -1,0 +1,135 @@
+Aula Fausto 28/02/2024
+
+
+//Listando os bancos de dados já existentes
+
+show dbs;
+
+
+//Selecionando um banco de dados para trabalhar
+// (Se ainda não existir, será criado)
+
+(Switched to db estoque (Gerou um erro))
+use estoque;
+
+
+//Inserindo um documento em uma cpleção chamada "produtos"
+
+db.produtos.insertOne({
+nome: "Vassoura de piaçava",
+preço: 27.80,
+categoria: "Limpeza"
+});
+
+
+//Exibindo todas as collections de um banco de dados
+
+show collections;
+
+
+// Outra Inserção
+
+db.produtos.insertOne({
+   nome: "café",
+   marca: "Dubom",
+   quantidade: 500,
+   unidade: "g",
+   preço: 17.47,
+   categoria: "Alimentos e bebidas",
+   estoque: 52
+});
+
+
+// Mais uma inserção
+
+db.produtos.insertOne({
+   nome_oficial: "Republica Francesa",
+   nome_comum: "França",
+   capital: "Paris",
+   continente: "Europa",
+   chefe_estado: "Emmanuel Macrom",
+   lingua_oficial: "Francês"
+});
+
+
+// Exibindo todos os produtos cadastrados
+
+db.produtos.find();
+
+
+// Exibindo o produto "café"
+
+db.produtos.find({ nome: "café" });
+
+// Inserindo um produto com subdocumento (no caso o fornecedor)
+
+db.produtos.insertOne({
+   nome: "Biscoito",
+   marca: "Crocantão",
+   quantidade: 200,
+   unidade: "g",
+   preço: 7.19,
+   categoria: "Alimentos e bebidas",
+   estoque: 100,
+   fornecedor: {
+      nome: "Industria de Alimentos Bacana S/A",
+      cnpj: "01.234.567/0001-89",
+      telefone: "(36) 3666-0421",
+      email: "contato@bacana.ind.br",
+      representante: "Astolfo Alvarenga"
+   }
+});
+
+
+// Mais um produto com subdocumento
+
+db.produtos.insertOne({
+   nome: "Doce de Leite",
+   marca: "Nineirim",
+   preço: 15.87,
+   fornecedor: {
+      nome: "Industria de Alimentos Bacana S/A",
+      cnpj: "01.234.567/0001-89"
+   },
+   informação_utricional: {
+      acucares: "75g",
+      gordura_saturada: "12g",
+      proteina: "13g"
+   }
+});
+
+
+// Listando os produtos em ordem alfabetica de nome (ascendente = 1)
+
+db.produtos.find().sort({ nome: 1 });
+
+
+// Listando os produtos em ordem alfabética inversa de nome (descendente = -1)
+
+db.produtos.find().sort({ nome: -1 });
+
+
+// Listando os produtos de um fornecedor filtrando por CNPJ
+
+db.produtos.find({ "fornecedor.cnpj": "01.234.567/0001-89" });
+
+
+//Produtos com mais de um fornecedor (vetor de subdocumentos)
+
+db.produtos.insertOne({
+   nome: "Paçoca",
+   marca: "Junina",
+   preço: 15.87,
+   fornecedor: [
+      {
+         nome: "Industria de Alimentos Bacana S/A",
+         cnpj: "01.234.567/0001-89"
+      },
+      {
+         nome: "Distribuidora de Doces Pingo de Mel LTDA.",
+         cnpj: "98.756.432/0001-10"
+      }
+   ]
+});
+
+
