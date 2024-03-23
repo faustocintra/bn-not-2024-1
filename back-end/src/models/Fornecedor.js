@@ -1,10 +1,9 @@
 import mongoose from 'mongoose'
 //_id é automático no mongoose
 const esquema = mongoose.Schema({
-    noime: {type: String, requered: true},
-    cpf: {type: String, required: true, index:{unique:
-    true}},
-    data_nascimento: {type: Date, required: false},
+    razao_social: {type: String, requered: true},
+    nome_fantasia: {type: String, requered: true},
+    cnpj: {type: String, required: true, index:{unique:true}},
     logradouro: {type: String, required: true},
     num_casa: {type: String, required: true},
     bairro : {type: String, required: true},
@@ -22,4 +21,4 @@ Parâmertros de mongoose.model
     3° ~>nome da collection no banco de dados (inicial maiúscula)
 */
 
-export default mongoose.model('Cliente', esquema, 'clientes')
+export default mongoose.model('Fornecedor', esquema, 'fornecedor')
