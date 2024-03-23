@@ -1,17 +1,20 @@
-import Cliente from "../models/Cliente"
+import Cliente from '../models/Cliente.js'
 
-const controller = {} //objeto vazio
+const controller = {}   // Objeto vazio
 
 controller.create = async function(req, res) {
-    try {
-        await Cliente.create(req.body)
+  try {
+    await Cliente.create(req.body)
 
-        res.status(201).end()
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).end()
-        }
+    // Envia uma resposta de sucesso ao front-end
+    // HTTP 201: Created
+    res.status(201).end()
+  }
+  catch(error) {
+    console.error(error)
+    // HTTP 500: Internal Server Error
+    res.status(500).end()
+  }
 }
 
 export default controller
