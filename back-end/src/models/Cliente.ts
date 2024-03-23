@@ -13,10 +13,14 @@ const clienteSchema = new mongoose.Schema({
   municipio: String,
   uf: String,
   telefone: String,
-  email: String
+  email: {
+    type: String,
+    unique: true
+  }
 })
 
 export const clientZodSchema = z.object({
+  _id: z.instanceof(mongoose.Types.ObjectId).optional(),
   nome: z.string(),
   cpf: z.string(),
   data_nascimento: z.union([z.string(), z.date()]).optional(),
@@ -29,5 +33,7 @@ export const clientZodSchema = z.object({
   telefone: z.string(),
   email: z.string().email()
 })
+
+export type Cliente = z.infer<typeof clientZodSchema>
 
 export const ClienteModel = mongoose.model('Cliente', clienteSchema)

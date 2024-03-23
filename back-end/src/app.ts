@@ -1,7 +1,6 @@
 import cookieParser from "cookie-parser"
 import express, { NextFunction, Request, Response, json, urlencoded } from "express"
 import logger from "morgan"
-
 import 'express-async-errors'
 import mongoose from "mongoose"
 import { ZodError } from "zod"
