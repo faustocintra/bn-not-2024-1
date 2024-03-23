@@ -8,6 +8,7 @@ import { env } from "./env"
 import indexRouter from "./routes"
 import clientRouter from "./routes/client"
 import usersRouter from "./routes/users"
+import fornecedorRouter from "./routes/fornecedor"
 const app = express();
 
 mongoose.connect(env.DATABASE_URL).then(() => {
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use('/clientes', clientRouter)
+app.use('/fornecedores', fornecedorRouter)
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   if (error.name === 'MongoServerError') {
