@@ -29,6 +29,6 @@ import clienteRouter from './routes/cliente.js'
 app.use('/clientes', clienteRouter)
 
 import fornecedorRouter from './routes/fornecedor.js'
-app.use('fornecedor', fornecedorRouter)
+app.use('/fornecedores', fornecedorRouter)
 
 export default app;
