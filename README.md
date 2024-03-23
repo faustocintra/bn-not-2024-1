@@ -24,3 +24,5 @@ npx prisma init --datasource-provider mongodb
 
 # Adicionando o Prisma Client ao projeto
 npm install @prisma/client
+
+# funcionando 23/03
