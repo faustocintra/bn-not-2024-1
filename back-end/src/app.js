@@ -23,10 +23,14 @@ app.use(cookieParser());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
+
+
 /*
 *ROTAS
 */
 import clienteRouter from './routes/cliente.js'
+import fornecedorRouter from './routes/fornecedor.js';
 app.use('/clientes', clienteRouter)
+app.use('/fornecedores', fornecedorRouter)
 
 export default app;

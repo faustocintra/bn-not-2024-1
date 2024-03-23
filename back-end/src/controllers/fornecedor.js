@@ -1,10 +1,10 @@
-import Cliente from '../models/Cliente.js'
+import Fornecedor from '../models/Fornecedor.js'
 
 const controller = {}
 
 controller.create = async function(req, res) {
     try {
-        await Cliente.create(req.body)
+        await Fornecedor.create(req.body)
 
         //Envia uma resposta de sucesso ao front-end
         //HTTP 201: Created
@@ -19,7 +19,7 @@ controller.create = async function(req, res) {
 
 controller.retrieveAll = async function(req, res){
     try{
-        const result = await Cliente.find().sort({nome: 'asc'})
+        const result = await Fornecedor.find().sort({nome: 'asc'})
         res.send(result)
     }
     catch(error) {
@@ -29,7 +29,7 @@ controller.retrieveAll = async function(req, res){
 }
 controller.retrieveOne = async function(req, res){
     try{
-        const result = await Cliente.findById(req.params.id)
+        const result = await Fornecedor.findById(req.params.id)
         if(result) res.send(result)
 
         else res.status(404).end()
@@ -41,7 +41,7 @@ controller.retrieveOne = async function(req, res){
 }
 controller.update = async function(req, res){
     try{
-        const result = await Cliente.findByIdAndUpdate(req.params.id, req.body)
+        const result = await Fornecedor.findByIdAndUpdate(req.params.id, req.body)
         if(result) res.send(204).end()
         else res.status(404).end()
     }
@@ -52,7 +52,7 @@ controller.update = async function(req, res){
 }
 controller.delete = async function(req, res){
     try{
-        const result = await Cliente.findByIdAndDelete(req.params.id)
+        const result = await Fornecedor.findByIdAndDelete(req.params.id)
         if(result) res.send(204).end()
         else res.status(404).end()
     }
@@ -62,3 +62,4 @@ controller.delete = async function(req, res){
     }
 }
 export default controller
+
