@@ -3,8 +3,9 @@ import mongoose from 'mongoose'
 const esquema = mongoose.Schema({
     // _id é automático no Mongoose
     nome: { type: String, required: true},
-    cpf: { type: String, required: true, index:{unique: true} },
-    data_nascimento: { type: String, required: false},
+    razao_social: { type: String, required: true},
+    nome_fantasia: { type: String, required: true},
+    cnpj: {type: String, required: true, index:{unique: true} },
     logradouro: {type: String, required: true},
     num_casa: {type: String, required: true},
     bairro:{type: String, required: true},
@@ -19,4 +20,4 @@ const esquema = mongoose.Schema({
     2° ~> o esquema definido acima
     3° ~> nome da collection no BD ( inicial maiuscula, plural)
 */
-export default mongoose.model('Cliente',esquema, 'clientes')
+export default mongoose.model('Fornecedor',esquema, 'fornecedores')

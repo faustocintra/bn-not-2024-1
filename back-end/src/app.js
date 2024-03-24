@@ -1,7 +1,8 @@
 import dotenv from 'dotenv'
-dotenv.config() 
-// Carrega as variaveis de arquivo .env
-// no objeto global process .env
+// Carrega as variaveis do arquivo .env
+// no objeto global process.env
+
+dotenv.config()
 
 import express, { json, urlencoded } from "express";
 import cookieParser from "cookie-parser";
@@ -15,6 +16,7 @@ const app = express();
 import mongoose from 'mongoose'
 mongoose.connect(process.env.DATABASE_URL)
 
+
 app.use(logger("dev"));
 app.use(json());
 app.use(urlencoded({ extended: false }));
@@ -23,11 +25,13 @@ app.use(cookieParser());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
-/**********************************
-* ROTAS
-***********************************/
-
+/************************************************
+ * ROTAS
+ * ***********************************************/
 import clienteRouter from './routes/cliente.js'
 app.use('/clientes', clienteRouter)
+
+import fornecedorRouter from './routes/cliente.js'
+app.use('/fornecedores', fornecedorRouter)
 
 export default app;
