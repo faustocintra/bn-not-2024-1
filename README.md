@@ -13,4 +13,5 @@ cd back-end
 
 # Instalando as dependências necessárias
 npm install mongoose
+
 npm install dotenv
