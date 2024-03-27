@@ -1,4 +1,4 @@
-import Cliente from '../models/Cliente.js'
+import Cliente from '../models/Produto.js'
 
 const controller = {}   // Objeto vazio
 
@@ -73,6 +73,44 @@ controller.delete = async function(req, res) {
     // HTTP 500: Internal Server Error
     res.status(500).end()
   }
+}
+
+controller.retrieveAll = async function(req, res){
+    try{
+        const query = Produto.find().sort({ descricao: 'asc '})
+
+        //verifica se o parâmatro 'pop_fornecedor' foi passado pelo URL
+        //e, em caso positivo, acrescenta o populate à consulta
+        if('pop_fornecedor' in req.query) query.populate('fornecedor')
+
+        const result= await query.exec()
+
+        res.send(result)
+    }
+    catch(error) {
+        console.error(error)
+        // HTTP 500: Internal Server Error
+        res.status(500).end()
+      }
+}
+
+controller.retrieveOne = async function(req, res){
+    try{
+        const query = Produto.findById(req.params.id)
+
+        //verifica se o parâmatro 'pop_fornecedor' foi passado pelo URL
+        //e, em caso positivo, acrescenta o populate à consulta
+        if('pop_fornecedor' in req.query) query.populate('fornecedor')
+
+        const result= await query.exec()
+
+        res.send(result)
+    }
+    catch(error) {
+        console.error(error)
+        // HTTP 500: Internal Server Error
+        res.status(500).end()
+      }
 }
 
 export default controller
