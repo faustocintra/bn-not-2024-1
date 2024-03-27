@@ -14,4 +14,4 @@ const FornecedorSquema = mongoose.Schema({
     email: {type: String, required: true, index: {unique: true}}
 })
 
-export default mongoose.model('Fornecedor', FornecedorSquema)
+export default mongoose.model('Fornecedor', FornecedorSquema, 'fornecedores') 
