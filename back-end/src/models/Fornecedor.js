@@ -2,7 +2,6 @@ import mongoose from 'mongoose'
 
 const esquema = mongoose.Schema({
     // _id é automático no Mongoose
-    nome: { type: String, required: true},
     razao_social: { type: String, required: true},
     nome_fantasia: { type: String, required: true},
     cnpj: {type: String, required: true, index:{unique: true} },
