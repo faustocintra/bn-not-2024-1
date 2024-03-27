@@ -1,10 +1,7 @@
 import { Router } from 'express'
-import controller from '../controllers/cliente.js'
+import controller from '../controllers/fornecedor.js'
 
 const router = Router()
-
-router.post('/', controller.create)
-
 router.post('/', controller.create)
 router.get('/', controller.retrieveAll)
 router.get('/:id', controller.retrieveOne)

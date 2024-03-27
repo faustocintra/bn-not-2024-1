@@ -29,4 +29,10 @@ app.use("/users", usersRouter);
 import clienteRouter from './routes/cliente.js'
 app.use('/clientes', clienteRouter)
 
+import produtoRouter from './routes/produto.js'
+app.use('/produtos', produtoRouter)
+
+import fornecedorRouter from './routes/fornecedor.js'
+app.use('/fornecedores', fornecedorRouter)
+
 export default app;
