@@ -13,7 +13,7 @@ const clientController = {
   },
 
   retrieveAll: async (req: Request, res: Response) => {
-    const clients = await ClienteModel.find()
+    const clients = await ClienteModel.find().sort({ nome: 'asc' })
     return res.status(200).json(clients)
   },
 

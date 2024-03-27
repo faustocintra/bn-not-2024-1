@@ -1,14 +1,16 @@
 import cookieParser from "cookie-parser"
 import express, { NextFunction, Request, Response, json, urlencoded } from "express"
-import logger from "morgan"
 import 'express-async-errors'
 import mongoose from "mongoose"
+import logger from "morgan"
 import { ZodError } from "zod"
 import { env } from "./env"
 import indexRouter from "./routes"
 import clientRouter from "./routes/client"
-import usersRouter from "./routes/users"
 import fornecedorRouter from "./routes/fornecedor"
+import productRouter from "./routes/product"
+import usersRouter from "./routes/users"
+import vendasRouter from "./routes/vendas"
 const app = express();
 
 mongoose.connect(env.DATABASE_URL).then(() => {
@@ -27,6 +29,8 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use('/clientes', clientRouter)
 app.use('/fornecedores', fornecedorRouter)
+app.use('/produtos', productRouter)
+app.use('/vendas', vendasRouter)
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   if (error.name === 'MongoServerError') {

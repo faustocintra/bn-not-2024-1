@@ -35,4 +35,4 @@ const fornecedorSchema = new mongoose.Schema<Fornecedor>({
     }
 })
 
-export const FornecedorModel = mongoose.model<Fornecedor>('Fornecedor', fornecedorSchema)
+export const FornecedorModel = mongoose.model<Fornecedor>('Fornecedor', fornecedorSchema, 'fornecedores')

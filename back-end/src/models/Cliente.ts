@@ -36,4 +36,4 @@ export const clientZodSchema = z.object({
 
 export type Cliente = z.infer<typeof clientZodSchema>
 
-export const ClienteModel = mongoose.model('Cliente', clienteSchema)
+export const ClienteModel = mongoose.model('Cliente', clienteSchema, 'clientes')

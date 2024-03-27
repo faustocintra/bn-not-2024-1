@@ -36,7 +36,7 @@ export const fornecedorController = {
 
   async delete(req: Request, res: Response) {
     const id = req.params.id
-    const fornecedor = await FornecedorModel.deleteOne({ _id: id })
+    const fornecedor = await FornecedorModel.deleteOne({ _id: id }).sort({ razao_social: 'asc' })
     if (fornecedor.deletedCount === 0) {
       return res.status(404).json({ message: "Fornecedor not found" })
     }
