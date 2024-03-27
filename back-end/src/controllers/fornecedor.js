@@ -20,7 +20,7 @@ controller.create = async function(req, res) {
 //exibe todos os arquivos e em ordem alfabética
 controller.retrieveAll = async function(req, res){
     try{
-        const result = await Fornecedor.find().sort({nome: 'asc'})
+        const result = await Fornecedor.find().sort({razao_social: 'asc'})
         //http 200: ok (implícito)
         res.send(result)
     }
