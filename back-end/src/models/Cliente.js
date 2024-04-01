@@ -17,8 +17,8 @@ const esquema = mongoose.Schema({
 
 /* 
   Parâmetros de mongoose.model
-  1º ~> Nome do model (inicial maiúscula)
-  2º ~> o esquema definido acima
-  3º ~> nome da collection no BD (inicial minúscula, plural)
+  1º -> Nome do model (inicial maiúscula)
+  2º -> o esquema definido acima
+  3º -> nome da collection no BD (inicial minúscula, plural)
 */
 export default mongoose.model("Cliente", esquema, "clientes");
