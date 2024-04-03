@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const VendaSquema = mongoose.Schema({
-    num: {type: Number, required: true},
+    num_venda: {type: Number, required: true},
     data_venda: {type: Date, required: true},
     cliente: {
         type: mongoose.ObjectId,
