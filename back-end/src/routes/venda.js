@@ -9,4 +9,8 @@ router.get('/:id', controller.retrieveOne)
 router.put('/:id', controller.update)
 router.delete('/:id', controller.delete)
 
-export default router
+router.post('/:id/itens', controller.createItem)
+router.get('/:id/itens', controller.retrieveAllItens)
+router.get('/:id/itens', controller.retrieveOneItem)
+
+export default router

@@ -3,6 +3,6 @@ import controller from '../controllers/cliente.js'
 
 const router = Router()
 
-router.post('/', controller.create)
+router.post('/cliente', controller.create)
 
 export default router
