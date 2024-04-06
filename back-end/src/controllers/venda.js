@@ -129,14 +129,66 @@ controller.retrieveOneItem = async function (req, res) {
 
         // 2) Se a venda não for encontrada, retorna 404: Not Found
         if (!venda) return res.status(404).end();
-        
+
         // 3) Encontra o item específico dentro do vetor venda.itens
         const item = venda.itens.id(req.params.itemId);
 
         // 4) Se o item for encontrado, retorna-o com HTTP 200: Ok (Implícito)
-        if(item) res.send(item);
+        if (item) res.send(item);
         // Senão, retorna HTTP 404: Not Found
         else res.status(404).end();
+    } catch {
+        console.error(error);
+        // HTTP 500: Internal Server Error
+        res.status(500).end();
+    }
+};
+
+controller.updateItem = async function (req, res) {
+    try {
+        // 1) Procurando pela venda na qual o item será alterado
+        const venda = await Venda.findById(req.params.id);
+
+        // 2) Se a venda não for encontrada, retorna 404: Not Found
+        if (!venda) return res.status(404).end();
+
+        // 3) Percorre cada um dos campos de req.body e atualiza o
+        // valor do campo correspondente no item
+        for (let field in req.body) {
+            venda.itens.id(req.params.itemId)[field] = req.body[field];
+        }
+        venda.markModified("itens");
+
+        // 4) Salva a venda com o item atualizado
+        await venda.save();
+
+        // 5) Em caso de sucesso -> HTTP 204: No Content
+        res.status(204).end();
+    } catch {
+        console.error(error);
+        // HTTP 500: Internal Server Error
+        res.status(500).end();
+    }
+};
+
+controller.deleteItem = async function (req, res) {
+    try {
+        // 1) Procurando pela venda na qual o item será excluído
+        const venda = await Venda.findById(req.params.id);
+
+        // 2) Se a venda não for encontrada, retorna 404: Not Found
+        if (!venda) return res.status(404).end();
+
+        // 3) Item não existe -> HTTP 404: Not Found
+        if (!venda.itens.id(req.params.itemId)) return res.status(404).end();
+
+        // 4) (Tenta) Exclui o item
+        venda.itens.id(req.params.itemId).deleteOne();
+        venda.markModified("itens");
+
+        await venda.save();
+
+        res.status(204).end();
     } catch {
         console.error(error);
         // HTTP 500: Internal Server Error
