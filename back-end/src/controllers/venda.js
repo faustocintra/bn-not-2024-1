@@ -107,5 +107,39 @@ controller.retrieveOneItem = async function(req, res){
         res.status(500).end()
     }
 }
+controller.updateItem = async function(req, res){
+    try{
+        const venda = await Venda.findById(req.params.id)
+        if(! venda) return res.status(404).end()
+        for(let field in req.body){
+            console.log(req.params.itemId)
+            venda.itens.id(req.params.itemId) [field] = req.body[field]
+        }
+        venda.markModified('itens')
+        await venda.save()
+        res.status(204).end()
+    }
+    catch(error) {
+        console.error(error)
+        res.status(500).end()
+    }
+}
+controller.deleteItem = async function(req, res){
+    try{
+        const venda = await Venda.findById(req.params.id)
+        if(! venda) return res.status(404).end()
+        if(! venda.itens.id(req.params.itemId)) return res.status(404).end()
+        venda.itens.id(req.params.itemId).deleteOne()
+        venda.markModified('itens')
+        await venda.save()
+        res.status(404).end()
+
+    }
+    catch(error) {
+        console.error(error)
+        res.status(500).end()
+    }
+}
+
 
 export default controller

@@ -8,8 +8,12 @@ vendaRouter.get('/', controller.retrieveAll)
 vendaRouter.get('/:id', controller.retrieveOne)
 vendaRouter.put('/:id', controller.update)
 vendaRouter.delete('/:id', controller.delete)
+
 vendaRouter.post('/:id/itens', controller.createItem)
 vendaRouter.get('/:id/itens', controller.retrieveAllItems)
 vendaRouter.get('/:id/itens/:itemId', controller.retrieveOneItem)
+vendaRouter.put('/:id/itens/:itemId', controller.updateItem)
+vendaRouter.delete('/:id/itens/:itemId', controller.deleteItem)
+
 
 export default vendaRouter
