@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
-//Carrega as variáveis do arquivo .env
-//no objeto global process.env
+// Carrega as variáveis do arquivo .env
+// no objeto global process.env
 dotenv.config()
 
 import express, { json, urlencoded } from "express";
@@ -22,11 +22,21 @@ app.use(cookieParser());
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-/**********************************************************************************
+
+/***************************************************
  * ROTAS
- **********************************************************************************/
+***************************************************/
 
 import clienteRouter from './routes/cliente.js'
 app.use('/clientes', clienteRouter)
+
+import fornecedorRouter from './routes/fornecedor.js'
+app.use('/fornecedores', fornecedorRouter)
+
+import produtoRouter from './routes/produto.js'
+app.use('/produtos', produtoRouter)
+
+import vendaRouter from './routes/venda.js'
+app.use('/vendas', vendaRouter)
 
 export default app;

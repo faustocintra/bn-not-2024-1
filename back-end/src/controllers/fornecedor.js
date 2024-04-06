@@ -1,10 +1,10 @@
-import Produto from '../models/Produto.js'
+import Fornecedor from '../models/Fornecedor.js'
 
 const controller = {}   // Objeto vazio
 
 controller.create = async function(req, res) {
   try {
-    await Produto.create(req.body)
+    await Fornecedor.create(req.body)
 
     // Envia uma resposta de sucesso ao front-end
     // HTTP 201: Created
@@ -19,15 +19,7 @@ controller.create = async function(req, res) {
 
 controller.retrieveAll = async function(req, res) {
   try {
-
-    const query = Produto.find().sort({ descricao: 'asc' })
-
-    // Verifica se o parâmetro 'pop_fornecedor' foi passado na URL
-    // e, em caso positivo, acrescenta o populate() à consulta
-    if('pop_fornecedor' in req.query) query.populate('fornecedor')
-
-    const result = await query.exec()
-
+    const result = await Fornecedor.find().sort({ razao_social: 'asc' })
     // HTTP 200: OK (implícito)
     res.send(result)
   }
@@ -40,15 +32,7 @@ controller.retrieveAll = async function(req, res) {
 
 controller.retrieveOne = async function(req, res) {
   try {
-
-    const query = Produto.findById(req.params.id)
-
-    // Verifica se o parâmetro 'pop_fornecedor' foi passado na URL
-    // e, em caso positivo, acrescenta o populate() à consulta
-    if('pop_fornecedor' in req.query) query.populate('fornecedor')
-
-    const result = await query.exec()
-
+    const result = await Fornecedor.findById(req.params.id)
     // Documento encontrado ~> HTTP 200: OK (implícito)
     if(result) res.send(result)
     // Documento não encontrado ~> HTTP 404: Not Found
@@ -63,7 +47,7 @@ controller.retrieveOne = async function(req, res) {
 
 controller.update = async function(req, res) {
   try {
-    const result = await Produto.findByIdAndUpdate(req.params.id, req.body)
+    const result = await Fornecedor.findByIdAndUpdate(req.params.id, req.body)
     // Documento encontrado e atualizado ~> HTTP 204: No Content
     if(result) res.status(204).end()
     // Documento não encontrado (e não atualizado) ~> HTTP 404: Not Found
@@ -78,7 +62,7 @@ controller.update = async function(req, res) {
 
 controller.delete = async function(req, res) {
   try {
-    const result = await Produto.findByIdAndDelete(req.params.id)
+    const result = await Fornecedor.findByIdAndDelete(req.params.id)
     // Documento encontrado e excluído ~> HTTP 204: No Content
     if(result) res.status(204).end()
     // Documento não encontrado (e não excluído) ~> HTTP 404: Not Found
