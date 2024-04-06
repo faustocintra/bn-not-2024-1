@@ -12,5 +12,7 @@ vendasRouter.delete('/:id', vendaController.delete)
 vendasRouter.post('/:id/itens', vendaController.createItem)
 vendasRouter.get('/:id/itens', vendaController.retrieveAllItems)
 vendasRouter.get('/:id/itens/:itemId', vendaController.retrieveOneItem)
+vendasRouter.put('/:id/itens/:itemId', vendaController.updateItem)
+vendasRouter.delete('/:id/itens/:itemId', vendaController.deleteItem)
 
 export default vendasRouter

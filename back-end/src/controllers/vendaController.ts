@@ -106,12 +106,62 @@ export const vendaController = {
     return res.status(200).json(venda)
   },
 
+  updateItem: async (req: Request, res: Response) => {
+    const zodBodySchema = z.object({
+      num_item: z.number(),
+      quantidade: z.number(),
+      produto: z.string()
+    }).partial()
+
+    const body = zodBodySchema.parse(req.body)
+    
+    const vendaId = req.params.id
+    const itemId = req.params.itemId
+    
+    const venda = await vendaModel.findById(vendaId)
+    if (!venda) {
+      return res.status(404).json({ message: "venda not found" })
+    }
+    console.log(venda)
+    const item = venda.itens.id(itemId)
+    if (!item) {
+      return res.status(404).json({ message: "item not found" })
+    }
+    for(const [field, value] of Object.entries(body)) {
+      // @ts-ignore
+      item[field] = value
+      venda.markModified('itens')
+    }
+
+    await venda.save()
+    return res.status(200).json(venda)
+  },
+
   delete: async (req: Request, res: Response) => {
     const id = req.params.id
     const venda = await vendaModel.deleteOne({ _id: id })
     if (venda.deletedCount === 0) {
       return res.status(404).json({ message: "venda not found" })
     }
+
+    return res.status(204).send()
+  },
+
+  deleteItem: async (req: Request, res: Response) => {
+    const vendaId = req.params.id
+    const itemId = req.params.itemId
+    const venda = await vendaModel.findById(vendaId)
+    if (!venda) {
+      return res.status(404).json({ message: "venda not found" })
+    }
+
+    const item = venda.itens.id(itemId)
+    if (!item) {
+      return res.status(404).json({ message: "item not found" })
+    }
+
+    venda.itens.remove(item)
+    await venda.save()
 
     return res.status(204).send()
   }
