@@ -30,9 +30,9 @@ const clientController = {
     const id = req.params.id
     const body = req.body
     const clientData = clientZodSchema.partial().parse(body)
-    const client = await ClienteModel.updateOne({ _id: id }, clientData)
+    await ClienteModel.updateOne({ _id: id }, clientData)
 
-    return res.status(200).json(client)
+    return res.sendStatus(204)
   },
 
   delete: async (req: Request, res: Response) => {
@@ -42,7 +42,7 @@ const clientController = {
       return res.status(404).json({ message: "Client not found" })
     }
 
-    return res.status(204).send()
+    return res.sendStatus(204)
   }
 }
 

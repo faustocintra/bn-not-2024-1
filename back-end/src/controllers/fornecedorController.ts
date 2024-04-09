@@ -29,9 +29,9 @@ export const fornecedorController = {
     const id = req.params.id
     const body = req.body
     const fornecedorData = fornecedorZodSchema.partial().parse(body)
-    const fornecedor = await FornecedorModel.updateOne({ _id: id }, fornecedorData)
+    await FornecedorModel.updateOne({ _id: id }, fornecedorData)
 
-    return res.status(200).json(fornecedor)
+    return res.sendStatus(204)
   },
 
   async delete(req: Request, res: Response) {

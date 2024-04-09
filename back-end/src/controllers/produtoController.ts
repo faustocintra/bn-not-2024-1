@@ -7,9 +7,9 @@ const productController = {
   create: async (req: Request, res: Response) => {
     const body = req.body
     const productData = productZodSchema.parse(body)
-    const product = await productModel.create(productData)
+    await productModel.create(productData)
 
-    return res.status(201).json(product) 
+    return res.sendStatus(201)
   },
 
   retrieveAll: async (req: Request, res: Response) => {
@@ -39,9 +39,9 @@ const productController = {
     const id = req.params.id
     const body = req.body
     const productData = productZodSchema.partial().parse(body)
-    const product = await productModel.updateOne({ _id: id }, productData)
+    await productModel.updateOne({ _id: id }, productData)
 
-    return res.status(200).json(product)
+    return res.sendStatus(204)
   },
 
   delete: async (req: Request, res: Response) => {

@@ -101,9 +101,9 @@ export const vendaController = {
     const id = req.params.id
     const body = req.body
     const vendaData = zodVendaSchema.partial().parse(body)
-    const venda = await vendaModel.updateOne({ _id: id }, vendaData)
+    await vendaModel.updateOne({ _id: id }, vendaData)
 
-    return res.status(200).json(venda)
+    return res.sendStatus(204)
   },
 
   updateItem: async (req: Request, res: Response) => {
@@ -134,7 +134,7 @@ export const vendaController = {
     }
 
     await venda.save()
-    return res.status(200).json(venda)
+    return res.sendStatus(204)
   },
 
   delete: async (req: Request, res: Response) => {
