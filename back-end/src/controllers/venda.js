@@ -98,21 +98,20 @@ controller.delete = async function(req, res) {
 }
 
 controller.createItem = async function(req, res) {
-  try{
-    //Procurando pela venda na qual o novo irem será inserido
+  try {
+    // 1) Procurando pela venda na qual o novo item será inserido
     const venda = await Venda.findById(req.params.id)
 
-    //se a venda não for encontrada, retorna 404: not found
+    // 2) Se a venda não for encontrada, retorna HTTP 404: Not Found
     if(! venda) return res.status(404).end()
 
-    //Adicionado o novo item ao vetor de itens da venda
+    // 3) Adiciona o novo item ao vetor de itens da venda
     venda.itens.push(req.body)
     venda.markModified('itens')
     await venda.save()
 
-    //em caso de sucesso, retorna http 201: Created
+    // 4) Em caso de sucesso, retorna HTTP 201: Created
     return res.status(201).end()
-    
   }
   catch(error) {
     console.error(error)
@@ -121,23 +120,15 @@ controller.createItem = async function(req, res) {
   }
 }
 
-controller.retrieveAllItens = async function(req, res) {
-  try{
-    //Procurando pela venda na qual o novo irem será inserido
+controller.retrieveAllItems = async function(req, res) {
+  try {
+    // 1) Procurando pela venda na qual o novo item será inserido
     const venda = await Venda.findById(req.params.id)
 
-    //se a venda não for encontrada, retorna 404: not found
+    // 2) Se a venda não for encontrada, retorna HTTP 404: Not Found
     if(! venda) return res.status(404).end()
-    // senao, retorna o vetor 
-
-    //Adicionado o novo item ao vetor de itens da venda
-    venda.itens.push(req.body)
-    venda.markModified('itens')
-    await venda.save()
-
-    //em caso de sucesso, retorna http 201: Created
-    return res.status(201).end()
-    
+    // Senão, retorna o vetor venda.itens com HTTP 200: Ok (implícito)
+    else res.send(venda.itens)
   }
   catch(error) {
     console.error(error)
@@ -146,25 +137,82 @@ controller.retrieveAllItens = async function(req, res) {
   }
 }
 
-controller.retrieveOneItem = async function(req,res) {
-  try{
-    //Procurando pela venda na qual o novo irem será inserido
+controller.retrieveOneItem = async function(req, res) {
+  try {
+    // 1) Procurando pela venda na qual o novo item será inserido
     const venda = await Venda.findById(req.params.id)
 
-    //se a venda não for encontrada, retorna 404: not found
+    // 2) Se a venda não for encontrada, retorna HTTP 404: Not Found
     if(! venda) return res.status(404).end()
-    // senao, retorna o vetor 
-
-    // encontra o item especifico dentro do vetor venda.itens
+    
+    // 3) Procura o item específico dentro do vetor venda.itens
     const item = venda.itens.id(req.params.itemId)
 
-    // se item for encontra, retorna-o com HTTP 200: OK (IMPLICITO)
-    if(item) res.send(404).end()
+    // 4) Se item for encontrado, retorna-o com HTTP 200: Ok (implícito)
+    if(item) res.send(item)
+    // Senão, retorna HTTP 404: Not Found
+    else res.status(404).end()
   }
   catch(error) {
     console.error(error)
     // HTTP 500: Internal Server Error
     res.status(500).end()
   }
-
 }
+
+controller.updateItem = async function(req, res) {
+  try {
+    // 1) Procurando pela venda na qual o novo item será inserido
+    const venda = await Venda.findById(req.params.id)
+
+    // 2) Se a venda não for encontrada, retorna HTTP 404: Not Found
+    if(! venda) return res.status(404).end()
+
+    // 3) Percorre cada um dos campos de req.body e atualiza o
+    //    valor do campo correspondente no item
+    for(let field in req.body) {
+      venda.itens.id(req.params.itemId)[field] = req.body[field]
+    }
+    venda.markModified('itens')
+
+    // 4) Salva a venda com o item atualizado
+    await venda.save()
+
+    // 5) Em caso de sucesso ~> HTTP 204: No Content
+    res.status(204).end()
+  }
+  catch(error) {
+    console.error(error)
+    // HTTP 500: Internal Server Error
+    res.status(500).end()
+  }
+}
+
+controller.deleteItem = async function(req, res) {
+  try {
+    // 1) Procurando pela venda na qual o novo item será inserido
+    const venda = await Venda.findById(req.params.id)
+
+    // 2) Se a venda não for encontrada, retorna HTTP 404: Not Found
+    if(! venda) return res.status(404).end()
+
+    // Item não existe ~> HTTP 404: Not Found
+    if(! venda.itens.id(req.params.itemId)) return res.status(404).end()
+
+    // 3) (Tenta) Exclui o item
+    venda.itens.id(req.params.itemId).deleteOne()
+    venda.markModified('itens')
+
+    await venda.save()
+
+    // HTTP 204: No Content
+    res.status(204).end()
+  }
+  catch(error) {
+    console.error(error)
+    // HTTP 500: Internal Server Error
+    res.status(500).end()
+  }
+}
+
+export default controller
