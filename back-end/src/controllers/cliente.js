@@ -1,6 +1,6 @@
 import Cliente from '../models/Cliente.js'
 
-const controller = {}   // Objeto vazio
+const controller = {}   // Objeto vazioo
 
 controller.create = async function(req, res) {
   try {
@@ -74,5 +74,6 @@ controller.delete = async function(req, res) {
     res.status(500).end()
   }
 }
+
 
 export default controller
