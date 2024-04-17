@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import controller from '../controllers/venda.js'
 
+
 const router = Router()
 
 router.post('/', controller.create)
@@ -9,10 +10,10 @@ router.get('/:id', controller.retrieveOne)
 router.put('/:id', controller.update)
 router.delete('/:id', controller.delete)
 
-router.post('/:id/itens', controller.createItem)
-router.get('/:id/itens', controller.retrieveAllItems)
-router.get('/:id/itens/:itemId', controller.retrieveOneItem)
-router.put('/:id/itens/:itemId', controller.updateItem)
-router.delete('/:id/itens/:itemId', controller.deleteItem)
+router.post('/:id/itens', controller.createItem) //Rota para Criar item
+router.get('/:id/itens', controller.retrieveAllItems) // Rota para recuperar (consultar)
+router.get('/:id/itens/:itemId', controller.retrieveOneItem) // Rota consulta um
+router.put('/:id/itens/:itemId', controller.updateItem) // Rota atualizar
+router.delete('/:id/itens/:itemId', controller.deleteItem) // Rota apagar ou remover
 
 export default router
