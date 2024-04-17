@@ -19,7 +19,6 @@ controller.create = async function(req, res) {
 
 controller.retrieveAll = async function(req, res) {
   try {
-    const result = await Venda.find().sort({ nome: 'asc' })
     const query = Venda.find().sort({ num: 'asc' })
 
     // Verifica se o parâmetro 'pop_cliente' foi passado na URL
