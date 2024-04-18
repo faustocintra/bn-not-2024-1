@@ -37,4 +37,4 @@ app.use('/produtos', produtoRouter)
 import vendaRouter from './routes/venda.js'
 app.use('/vendas', vendaRouter)
 
-export default app;
+export default app; 

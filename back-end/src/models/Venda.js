@@ -27,4 +27,4 @@ const esquema = mongoose.Schema({
   2º ~> o esquema definido acima
   3º ~> nome da collection no BD (inicial minúscula, plural)
 */
-export default mongoose.model('Venda', esquema, 'vendas')
+export default mongoose.model('Venda', esquema, 'vendas') 
