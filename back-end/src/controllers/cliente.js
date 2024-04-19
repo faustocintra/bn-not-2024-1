@@ -1,8 +1,8 @@
-import Cliente from '../models/Cliente.js'
+import Cliente from "../models/Cliente.js";
 
-const controller = {}   // Objeto vazio
+const controller = {}  // Objeto vazio
 
-controller.create = async function(req, res) {
+controller.create = async function (req, res) {
   try {
     await Cliente.create(req.body)
 
@@ -10,65 +10,69 @@ controller.create = async function(req, res) {
     // HTTP 201: Created
     res.status(201).end()
   }
-  catch(error) {
+  catch (error) {
     console.error(error)
     // HTTP 500: Internal Server Error
     res.status(500).end()
   }
 }
 
-controller.retrieveAll = async function(req, res) {
+//exibe todos os arquivos e em ordem alfabética
+controller.retrieveAll = async function (req, res) {
   try {
     const result = await Cliente.find().sort({ nome: 'asc' })
-    // HTTP 200: OK (implícito)
+    //http 200: ok (implícito)
     res.send(result)
   }
-  catch(error) {
+  catch (error) {
     console.error(error)
     // HTTP 500: Internal Server Error
     res.status(500).end()
   }
 }
 
-controller.retrieveOne = async function(req, res) {
+//exibe apenas um arquivo
+controller.retrieveOne = async function (req, res) {
   try {
     const result = await Cliente.findById(req.params.id)
-    // Documento encontrado ~> HTTP 200: OK (implícito)
-    if(result) res.send(result)
-    // Documento não encontrado ~> HTTP 404: Not Found
-    else res.status(404).end()  
+    //documento encontrato -> http 200: ok (implicito)
+    if (result) res.send(result)
+    //documento não encontrado -> http 404: not found
+    else res.status(404).and()
   }
-  catch(error) {
+  catch (error) {
     console.error(error)
     // HTTP 500: Internal Server Error
     res.status(500).end()
   }
 }
 
-controller.update = async function(req, res) {
+//atualizar um arquivo
+controller.update = async function (req, res) {
   try {
     const result = await Cliente.findByIdAndUpdate(req.params.id, req.body)
-    // Documento encontrado e atualizado ~> HTTP 204: No Content
-    if(result) res.status(204).end()
-    // Documento não encontrado (e não atualizado) ~> HTTP 404: Not Found
-    else res.status(404).end()
+    //documento encontrado e atualizado -> http 204: no content
+    if (result) res.status(204).end()
+    //documento não encontrado (e não atualizado) -> http 404: not found
+    else res.status(404).and()
   }
-  catch(error) {
+  catch (error) {
     console.error(error)
     // HTTP 500: Internal Server Error
     res.status(500).end()
   }
 }
 
-controller.delete = async function(req, res) {
+//para excluir um arquivo
+controller.delete = async function (req, res) {
   try {
     const result = await Cliente.findByIdAndDelete(req.params.id)
-    // Documento encontrado e excluído ~> HTTP 204: No Content
-    if(result) res.status(204).end()
-    // Documento não encontrado (e não excluído) ~> HTTP 404: Not Found
-    else res.status(404).end()
+    //documento encontrado e excluído -> http 204: No content
+    if (result) res.status(204).end
+    //documento não encontrado (e não excluído) -> http 404: not found
+    else res.status(404).and()
   }
-  catch(error) {
+  catch (error) {
     console.error(error)
     // HTTP 500: Internal Server Error
     res.status(500).end()
