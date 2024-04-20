@@ -19,7 +19,7 @@ controller.create = async function(req, res) {
 
 controller.retrieveAll = async function(req, res) {
   try {
-    const result = await Fornecedor.find().sort({ nome_fantasia: 'asc' })
+    const result = await Fornecedor.find().sort({ razao_social: 'asc' })
     // HTTP 200: OK (implícito)
     res.send(result)
   }

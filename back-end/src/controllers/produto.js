@@ -19,11 +19,15 @@ controller.create = async function(req, res) {
 
 controller.retrieveAll = async function(req, res) {
   try {
-    const query = Produto.find().sort({ descricao: 'asc'})
-    // Verifica se o parametro 'pop_fornecedor' foi passado na URL
-    //e, em caso positivo, acrescenta o populate() à consulta
-   if('pop_fornecedor' in req.query) query.populate('fornecedor')
-   const result = await query.exec()
+
+    const query = Produto.find().sort({ descricao: 'asc' })
+
+    // Verifica se o parâmetro 'pop_fornecedor' foi passado na URL
+    // e, em caso positivo, acrescenta o populate() à consulta
+    if('pop_fornecedor' in req.query) query.populate('fornecedor')
+
+    const result = await query.exec()
+
     // HTTP 200: OK (implícito)
     res.send(result)
   }
@@ -36,15 +40,16 @@ controller.retrieveAll = async function(req, res) {
 
 controller.retrieveOne = async function(req, res) {
   try {
-    const query = Produto.findById(req.params.id)
-    
-    // Verifica se o parametro 'pop_fornecedor' foi passado na URL
-    //e, em caso positivo, acrescenta o populate() à consulta
-   if('pop_fornecedor' in req.query) query.populate('fornecedor')
-   
-   const result = await query.exec()
 
-    // Documento não encontrado ~> HTTP 200: OK (implicito)
+    const query = Produto.findById(req.params.id)
+
+    // Verifica se o parâmetro 'pop_fornecedor' foi passado na URL
+    // e, em caso positivo, acrescenta o populate() à consulta
+    if('pop_fornecedor' in req.query) query.populate('fornecedor')
+
+    const result = await query.exec()
+
+    // Documento encontrado ~> HTTP 200: OK (implícito)
     if(result) res.send(result)
     // Documento não encontrado ~> HTTP 404: Not Found
     else res.status(404).end()  
