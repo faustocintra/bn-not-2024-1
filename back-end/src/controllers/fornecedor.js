@@ -68,9 +68,9 @@ controller.delete = async function(req, res){
     try{
         const result = await Fornecedor.findByIdAndDelete(req.params.id)
         //documento encontrado e excluído -> http 204: No content
-        if(result) res.status(204).end
+        if(result) res.status(204).end()
         //documento não encontrado (e não excluído) -> http 404: not found
-        else res.status(404).and()
+        else res.status(404).end()
     }
     catch(error) {
         console.error(error)
