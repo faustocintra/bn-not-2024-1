@@ -7,7 +7,7 @@ const esquema = mongoose.Schema({
     quantidade: {type: Number, required: true},
     valor_unitario: {type: Number, required: true},
     fornecedor: {
-        type: mongoose.ObjectId,
+        type: mongoose.ObjectId, 
         ref: 'Fornecedor', //nome do model referenciado
         required: true
     }

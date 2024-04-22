@@ -1,4 +1,4 @@
-import { populate } from 'dotenv'
+
 import Produto from '../models/Produto.js'
 
 const controller = {}   // Objeto vazio
@@ -18,12 +18,12 @@ controller.create = async function(req, res) {
   }
 }
 
-controller.retrievAll = async function(req, res){
+controller.retrieveAll = async function(req, res){
   try {
     const query = Produto.find().sort({ descricao: 'asc'})
     //verifica se o parãmetro 'pop_fornecedor' foi passado na url
     //e, em caso positivo, acrescenta o populate() á consulta
-    if('pop_fornecedor' in req.query)query.populate('fornecedor')
+    if('pop_fornecedor' in req.query) query.populate('fornecedor')
     const result = await query.exec()
     //http 200: ok (implícito)
     res.send(result)
@@ -35,12 +35,12 @@ controller.retrievAll = async function(req, res){
   }
 }
 
-controller.retrieveOne = async function(req, res){
+controller.retrieveOne = async function(req, res) {
   try{
-    const query = Produto.find().sort({ descricao: 'asc'})
+    const query = Produto.findById(req.params.id)
     //verifica se o parãmetro 'pop_fornecedor' foi passado na url
     //e, em caso positivo, acrescenta o populate() á consulta
-    if('pop_fornecedor' in req.query)query.populate('fornecedor')
+    if('pop_fornecedor' in req.query) query.populate('fornecedor')
     const result = await query.exec()
 
     if(result) res.send(result)

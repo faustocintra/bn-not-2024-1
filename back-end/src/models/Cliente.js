@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 //_id é automático no mongoose
 const esquema = mongoose.Schema({
-    noime: {type: String, requered: true},
+    nome: {type: String, requered: true},
     cpf: {type: String, required: true, index:{unique:
     true}},
     data_nascimento: {type: Date, required: false},
