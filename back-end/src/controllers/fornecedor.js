@@ -63,8 +63,10 @@ controller.retrieveAll = async function(req, res){
    controller.delete = async function(req, res){
    try{
    const result = await Fornecedor.findByIdAndDelete(req.params.id)
-    //documento encontrado e excluído -> http 204: No contentif(result) res.status(204).end
-    //documento não encontrado (e não excluído) -> http 404: not foundelse res.status(404).and()
+    //documento encontrado e excluído -> http 204: No content
+    if(result) res.status(204).end()
+    //documento não encontrado (e não excluído) -> http 404: not found
+    else res.status(404).end()
     }
     catch(error) {
     console.error(error)
