@@ -1,4 +1,4 @@
-import Venda from '../Venda.js'
+import Venda from '../models/Venda.js'
 
 const controller = {}   // Objeto vazio
 
